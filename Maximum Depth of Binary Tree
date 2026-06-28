@@ -1,0 +1,50 @@
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+
+class Solution {
+
+    public int maxDepth(Node root) {
+
+        if (root == null)
+            return 0;
+
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+
+        return 1 + Math.max(left, right);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Node a = new Node(3);
+        Node b = new Node(4);
+        Node c = new Node(2);
+        Node d = new Node(-1);
+        Node e = new Node(1);
+        Node f = new Node(6);
+        Node g = new Node(9);
+
+        a.left = b;
+        a.right = c;
+        b.left = d;
+        b.right = e;
+        c.left = f;
+        c.right = g;
+
+        Solution obj = new Solution();
+
+        int depth = obj.maxDepth(a);
+
+        System.out.println("Maximum Depth = " + depth);
+    }
+}
