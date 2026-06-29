@@ -1,0 +1,96 @@
+import java.util.*;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+
+class Tree {
+
+    public ArrayList<Integer> diagonal(Node root) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        if (root == null) {
+            return list;
+        }
+
+        Queue<Node> q = new LinkedList<>();
+
+        Node temp = root;
+
+        while (temp != null) {
+
+            // Current node ko answer me add karo
+            list.add(temp.data);
+
+            // Left child ko queue me store karo
+            if (temp.left != null) {
+                q.add(temp.left);
+            }
+
+            // Right child par move karo
+            if (temp.right != null) {
+                temp = temp.right;
+            } else {
+
+                // Agar right child nahi hai to
+                // Queue se next diagonal start karo
+                if (!q.isEmpty()) {
+                    temp = q.poll();
+                } else {
+                    temp = null;
+                }
+            }
+        }
+
+        return list;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Node root = new Node(8);
+
+        Node n1 = new Node(3);
+        Node n2 = new Node(10);
+        Node n3 = new Node(1);
+        Node n4 = new Node(6);
+        Node n5 = new Node(14);
+        Node n6 = new Node(4);
+        Node n7 = new Node(7);
+        Node n8 = new Node(13);
+
+        root.left = n1;
+        root.right = n2;
+
+        n1.left = n3;
+        n1.right = n4;
+
+        n2.right = n5;
+
+        n4.left = n6;
+        n4.right = n7;
+
+        n5.left = n8;
+
+        Tree obj = new Tree();
+
+        ArrayList<Integer> ans = obj.diagonal(root);
+
+        System.out.println("Diagonal Traversal:");
+
+        for (int x : ans) {
+            System.out.print(x + " ");
+        }
+    }
+}
