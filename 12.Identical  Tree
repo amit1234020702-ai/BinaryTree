@@ -1,0 +1,72 @@
+import java.util.*;
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+
+class Solution {
+
+    public boolean isIdentical(Node p, Node q) {
+
+        // Dono tree empty hain
+        if (p == null && q == null)
+            return true;
+
+        // Ek empty hai aur dusra nahi
+        if (p == null || q == null)
+            return false;
+
+        // Data same nahi hai
+        if (p.data != q.data)
+            return false;
+
+        // Left aur Right subtree compare karo
+        return isIdentical(p.left, q.left) &&
+               isIdentical(p.right, q.right);
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Node root1 = new Node(1);
+
+        Node a = new Node(2);
+        Node b = new Node(3);
+        Node c = new Node(4);
+        Node d = new Node(5);
+
+        root1.left = a;
+        root1.right = b;
+
+        a.left = c;
+        a.right = d;
+
+        Node root2 = new Node(1);
+
+        Node e = new Node(2);
+        Node f = new Node(3);
+        Node g = new Node(4);
+        Node h = new Node(5);
+
+        root2.left = e;
+        root2.right = f;
+
+        e.left = g;
+        e.right = h;
+
+        Solution obj = new Solution();
+
+        boolean ans = obj.isIdentical(root1, root2);
+
+        System.out.println(ans);
+    }
+}
