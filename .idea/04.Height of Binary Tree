@@ -1,0 +1,10 @@
+//https://www.geeksforgeeks.org/batch/dsa-at-your-own-pace/track/DSASP-Tree/problem/height-of-binary-tree
+
+class Solution {
+    public int height(Node root) {
+        if(root==null){
+            return -1;
+        }
+        return 1+Math.max(height(root.left),height(root.right));
+    }
+}
