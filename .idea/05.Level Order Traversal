@@ -1,0 +1,28 @@
+//https://www.geeksforgeeks.org/batch/dsa-at-your-own-pace/track/DSASP-Tree/problem/level-order-traversal
+
+
+class Solution {
+    public ArrayList<Integer> levelOrder(Node root) {
+        ArrayList<Integer> q=new ArrayList<>();
+        if(root==null){
+            return q;
+        }
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            Node current=queue.poll();
+            q.add(current.data);
+             if( current.left !=null){
+            queue.add(current.left);
+             }
+             if(current.right !=null){
+            queue.add(current.right);
+          }
+       
+        }
+        return q;
+       
+        
+        
+    }
+}
