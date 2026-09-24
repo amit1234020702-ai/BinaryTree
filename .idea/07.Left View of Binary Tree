@@ -1,0 +1,30 @@
+//https://www.geeksforgeeks.org/batch/dsa-at-your-own-pace/track/DSASP-Tree/problem/left-view-of-binary-tree
+
+// yt=https://www.youtube.com/watch?v=JgRsVsw_ZSw
+
+class Solution {
+    public ArrayList<Integer> leftView(Node root) {
+         ArrayList<Integer> ans=new ArrayList<>();
+         if(root==null){
+             return ans;
+         }
+         Queue<Node> queue=new LinkedList<>();
+         queue.add(root);
+         while(!queue.isEmpty()){
+             int size=queue.size();
+             for(int i=0;i<size;i++){
+                 Node current=queue.remove();
+                 if(i==0){
+                     ans.add(current.data);
+                 }
+                 if(current.left!=null){
+                     queue.add(current.left);
+                 }
+                 if(current.right!=null){
+                     queue.add(current.right);
+                 }
+             }
+         }
+        return ans;
+    }
+}
