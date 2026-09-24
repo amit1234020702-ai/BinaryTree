@@ -1,0 +1,27 @@
+//https://www.geeksforgeeks.org/batch/dsa-at-your-own-pace/track/DSASP-Tree/problem/mirror-tree
+//yt =https://www.youtube.com/watch?v=iaqfZiqzEfI
+/* Structure of Binary Tree Node
+class Node
+{
+    int data;
+    Node left, right;
+    Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}*/
+
+class Solution {
+    void mirror(Node root) {
+        if(root==null){
+            return;
+        }
+        mirror(root.left);
+        mirror(root.right);
+        Node temp=root.right;
+        root.right=root.left;
+        root.left=temp;
+        
+    }
+}
