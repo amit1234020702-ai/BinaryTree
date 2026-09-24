@@ -1,0 +1,36 @@
+
+yt=https://www.youtube.com/watch?v=PPD2X52uzMc
+//https://www.geeksforgeeks.org/batch/dsa-at-your-own-pace/track/DSASP-Tree/problem/check-for-balanced-tree
+
+
+class Solution {
+    
+    public boolean isBalanced(Node root) {
+        
+        if (root == null) {
+            return true;
+        }
+        
+        int leftHeight = height(root.left);
+        int rightHeight = height(root.right);
+        
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return false;
+        }
+        
+        return isBalanced(root.left) &&
+               isBalanced(root.right);
+    }
+    
+    int height(Node root) {
+        
+        if (root == null) {
+            return 0;
+        }
+        
+        int left = height(root.left);
+        int right = height(root.right);
+        
+        return 1 + Math.max(left, right);
+    }
+}
